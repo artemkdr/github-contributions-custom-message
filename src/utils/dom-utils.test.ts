@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
-import { debounce, captureGridToMatrix, centerGridWrapper, getGeneratorOptions } from './dom-utils';
+import { describe, expect, it, vi } from 'vitest';
+import { captureGridToMatrix, centerGridWrapper, debounce, getGeneratorOptions } from './dom-utils';
 
 describe('debounce', () => {
     it('should delay the execution of the function', () => {

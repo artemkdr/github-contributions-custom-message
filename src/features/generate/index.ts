@@ -5,7 +5,7 @@ interface GenerateContributionGridOptions {
     input: number[][]; // Input matrix of 0s and 1s
     gridContainer: HTMLElement; // Main container for the grid
     contributionsGrid: HTMLElement; // Grid element where contributions are displayed
-    creditsContainer: HTMLElement; // Container for displaying credits    
+    creditsContainer: HTMLElement; // Container for displaying credits
     speed?: number; // Animation speed
     paddingX?: number; // Horizontal padding for the grid
     paddingY?: number; // Vertical padding for the grid
@@ -44,14 +44,13 @@ export const generateContributionGrid = (options: GenerateContributionGridOption
         valueAttrName = 'data-value',
         colAttrName = 'data-col',
         rowAttrName = 'data-row',
-
     } = options;
 
     const speedFactor = normalizeSpeed(speed); // Normalize speed using helper function
 
     creditsContainer.innerHTML = creditsValue; // Update credits text
     creditsContainer.style.display = creditsValue ? 'block' : 'none'; // Show or hide credits based on input
-    
+
     // Set grid container padding based on user input
     Object.assign(gridContainer.style, {
         paddingLeft: `${paddingX}px`,
@@ -70,15 +69,17 @@ export const generateContributionGrid = (options: GenerateContributionGridOption
     if (matrixWidth < minInputLength) {
         // Pad the matrix with empty columns (0)
         const padding = Array.from({ length: Math.floor(0.5 * (minInputLength - matrixWidth)) }, () => 0);
-        adjustedMatrix = adjustedMatrix.map(row => [...padding, ...row, ...padding]);
+        adjustedMatrix = adjustedMatrix.map((row) => [...padding, ...row, ...padding]);
     } else if (matrixWidth > maxInputLength) {
         // Trim the matrix to the maximum allowed columns
-        adjustedMatrix = adjustedMatrix.map(row => row.slice(0, maxInputLength));
+        adjustedMatrix = adjustedMatrix.map((row) => row.slice(0, maxInputLength));
     }
 
     // check if the number of rows is less than numRows and pad with empty rows (0)
     if (adjustedMatrix.length < numRows) {
-        const padding = Array.from({ length: numRows - adjustedMatrix.length }, () => Array(adjustedMatrix[0].length).fill(0));
+        const padding = Array.from({ length: numRows - adjustedMatrix.length }, () =>
+            Array(adjustedMatrix[0].length).fill(0)
+        );
         adjustedMatrix = [...adjustedMatrix, ...padding];
     }
 
@@ -105,10 +106,17 @@ export const generateContributionGrid = (options: GenerateContributionGridOption
             square.setAttribute(valueAttrName, adjustedMatrix[row][col].toString()); // Set data attribute for value
 
             // Assign level based on matrix value
-            if (adjustedMatrix[row][col] === 1) {                
-                square.classList.add(squareLevelClassName.replace('{level}', (3 + Math.floor(Math.random() * 2)).toString())); // Higher level for 1
+            if (adjustedMatrix[row][col] === 1) {
+                square.classList.add(
+                    squareLevelClassName.replace('{level}', (3 + Math.floor(Math.random() * 2)).toString())
+                ); // Higher level for 1
             } else {
-                square.classList.add(squareLevelClassName.replace('{level}', (fillEmptySquares ? Math.floor(Math.random() * 2) : 0).toString())); // Lower level for 0
+                square.classList.add(
+                    squareLevelClassName.replace(
+                        '{level}',
+                        (fillEmptySquares ? Math.floor(Math.random() * 2) : 0).toString()
+                    )
+                ); // Lower level for 0
             }
 
             contributionsGrid.appendChild(square); // Add square to the grid
@@ -118,7 +126,7 @@ export const generateContributionGrid = (options: GenerateContributionGridOption
     generateLabels({
         dayLabelsContainer: gridContainer.querySelector('#day-labels') as HTMLElement, // Get the day labels container
         monthLabelsContainer: gridContainer.querySelector('#month-labels') as HTMLElement, // Get the month labels container
-    });    
+    });
 };
 
 const generateLabels = ({

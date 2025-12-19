@@ -1,5 +1,5 @@
-export const matrixMap : Record<string, number[][]> = {
-    'heart': [
+export const matrixMap: Record<string, number[][]> = {
+    heart: [
         [0, 1, 1, 0, 1, 1, 0],
         [1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1, 1],
@@ -8,7 +8,7 @@ export const matrixMap : Record<string, number[][]> = {
         [0, 0, 1, 1, 1, 0, 0],
         [0, 0, 0, 1, 0, 0, 0],
     ],
-    'smiley': [
+    smiley: [
         [0, 0, 1, 1, 1, 0, 0],
         [0, 1, 0, 0, 0, 1, 0],
         [1, 0, 1, 0, 1, 0, 1],
@@ -16,5 +16,5 @@ export const matrixMap : Record<string, number[][]> = {
         [1, 0, 1, 1, 1, 0, 1],
         [0, 1, 0, 0, 0, 1, 0],
         [0, 0, 1, 1, 1, 0, 0],
-    ]
-}
+    ],
+};

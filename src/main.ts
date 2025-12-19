@@ -40,7 +40,7 @@ const setupSaveButton = () => {
     );
 };
 
-// fill-empty-squares-input checkox is used to define 
+// fill-empty-squares-input checkox is used to define
 // whether to fill empty squares with a random low level value or leave them empty
 // it's checked by default, but can be read from URL
 const setupFillEmptySquaresInput = () => {
@@ -66,27 +66,32 @@ const setupDrawModeInput = () => {
     const drawMode = document.getElementById('draw-mode-input') as HTMLInputElement;
     const contributionGrid = document.getElementById('contribution-grid') as HTMLElement;
     const debouncedSetValueInURL = debounce(() => {
-        setValueInURL('matrix', encodeMatrix(currentMatrixState.getMatrix() || []));        
+        setValueInURL('matrix', encodeMatrix(currentMatrixState.getMatrix() || []));
     }, 500);
-    const gridPaintedHandler = (event: Event) => {                
+    const gridPaintedHandler = (event: Event) => {
         const customEvent = event as CustomEvent;
         if (customEvent && customEvent.type === 'painted' && customEvent.detail && customEvent.detail.square) {
             const selector = '#contribution-grid .square';
             const squares = document.querySelectorAll(selector);
             // if currentMatrix has the same size as the grid, we can update only painted square
-            const currentMatrix = currentMatrixState.getMatrix();            
-            if (currentMatrix && currentMatrix.length > 0 && squares.length === currentMatrix.length * currentMatrix[0].length) {
+            const currentMatrix = currentMatrixState.getMatrix();
+            if (
+                currentMatrix &&
+                currentMatrix.length > 0 &&
+                squares.length === currentMatrix.length * currentMatrix[0].length
+            ) {
                 const square = customEvent.detail.square as HTMLElement;
                 if (!square) return;
                 const rowIndex = parseInt(square.getAttribute('data-row') as string, 10);
                 const colIndex = parseInt(square.getAttribute('data-col') as string, 10);
                 const value = parseInt(square.getAttribute('data-value') as string, 10);
                 currentMatrixState.updateMatrix(rowIndex, colIndex, value);
-            } else { // otherwise we need to update the whole grid            
+            } else {
+                // otherwise we need to update the whole grid
                 currentMatrixState.setMatrix(captureGridToMatrix(selector));
             }
             debouncedSetValueInURL(event); // debounce to avoid too many updates in URL
-        }        
+        }
     };
 
     drawMode?.addEventListener('change', (event) => {
@@ -109,7 +114,7 @@ const setupClearButton = () => {
             fillEmptySquares: (document.getElementById('fill-empty-squares-input') as HTMLInputElement)?.checked,
             squareClassName: 'square',
             squareLevelClassName: 'level-{level}',
-            valueAttrName: 'data-value'
+            valueAttrName: 'data-value',
         });
         currentMatrixState.resetMatrix();
         setValueInURL('matrix', null);
@@ -188,10 +193,10 @@ const setupMatricesButtons = () => {
 };
 
 // set initial value from URL
-const setupInitialValue = () => {    
-    const messageInput = document.getElementById('message-input') as HTMLInputElement;    
+const setupInitialValue = () => {
+    const messageInput = document.getElementById('message-input') as HTMLInputElement;
     if (messageInput) {
-        const urlValue = getValueFromURL('value');        
+        const urlValue = getValueFromURL('value');
         if (typeof urlValue === 'string') {
             const messageFromUrl = sanitizeInput(urlValue);
             if (messageFromUrl) messageInput.value = messageFromUrl;
@@ -204,7 +209,7 @@ const setupInitialMatrix = () => {
     const matrixFromUrl = getValueFromURL('matrix');
     const matrix = decodeMatrix(matrixFromUrl as string);
     if (matrix && Array.isArray(matrix) && matrix.length > 0) {
-        currentMatrixState.setMatrix(matrix);        
+        currentMatrixState.setMatrix(matrix);
     }
 };
 
@@ -214,18 +219,18 @@ const initialize = () => {
     setupSaveButton();
     setupInitialValue();
     setupFillEmptySquaresInput();
-    setupDrawModeInput();    
+    setupDrawModeInput();
     setupForm();
     setupClearButton();
     setupShareButtons();
     setupInputChangeHandlers();
     setupMatricesButtons();
-    setupInitialMatrix(); 
+    setupInitialMatrix();
 };
 
-document.addEventListener('DOMContentLoaded', () => {        
+document.addEventListener('DOMContentLoaded', () => {
     // check that all required elements are present in the DOM
-    checkRequiredElements();    
+    checkRequiredElements();
     // initialize the event listeners and controls
     initialize();
     // generate the initial grid
@@ -234,27 +239,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const updateGrid = (props?: { input: number[][] }) => {
-    const currentMatrix = currentMatrixState.getMatrix();        
-    const options = { ...getGeneratorOptions() };    
-    
-    if (props) { // foreced input from props
+    const currentMatrix = currentMatrixState.getMatrix();
+    const options = { ...getGeneratorOptions() };
+
+    if (props) {
+        // foreced input from props
         options.input = props.input;
-    } else if (currentMatrix) { // use current matrix if available
+    } else if (currentMatrix) {
+        // use current matrix if available
         options.input = currentMatrix;
-    } else { // otherwise the input from getGeneratorOptions is used, i.e. the message-input value
-        
+    } else {
+        // otherwise the input from getGeneratorOptions is used, i.e. the message-input value
     }
     // update the current matrix state with the input value
     currentMatrixState.setMatrix(options.input);
 
     // draw the grid with the current options
-    generateContributionGrid(options);    
-    
+    generateContributionGrid(options);
+
     // update the URL with the current matrix value
     setValueInURL('matrix', encodeMatrix(currentMatrixState.getMatrix() || []));
-    
+
     // Clear the value from URL as we use matrix as input from here on
-    setValueInURL('value', null); 
+    setValueInURL('value', null);
 };
 
 const checkRequiredElements = () => {

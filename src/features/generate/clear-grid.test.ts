@@ -1,5 +1,5 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { clearGrid } from './clear-grid';
-import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('clearGrid', () => {
     let contributionsGrid: HTMLElement;

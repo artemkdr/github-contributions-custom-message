@@ -1,4 +1,4 @@
-import { buildMatrixFromString } from "@/features/generate/build-matrix-from-string";
+import { buildMatrixFromString } from '@/features/generate/build-matrix-from-string';
 
 export const debounce = (func: (event: Event) => void, delay: number) => {
     let timeoutId: number | undefined;
@@ -39,9 +39,11 @@ export const centerGridWrapper = () => {
     }
 };
 
-export const getGeneratorOptions = () => {    
+export const getGeneratorOptions = () => {
     return {
-        input: buildMatrixFromString((document.getElementById('message-input') as HTMLInputElement).value.toUpperCase()),        
+        input: buildMatrixFromString(
+            (document.getElementById('message-input') as HTMLInputElement).value.toUpperCase()
+        ),
         squaresClassName: 'square',
         squaresLevelClassName: 'level-{level}',
         valueAttrName: 'data-value',

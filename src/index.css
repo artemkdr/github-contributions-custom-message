@@ -27,7 +27,7 @@ textarea {
 }
 
 /* Theme variables */
-:root {    
+:root {
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -82,7 +82,7 @@ body {
 h1 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    max-width: calc(100% - 5rem);    
+    max-width: calc(100% - 5rem);
     align-self: center;
 }
 
@@ -110,7 +110,7 @@ footer {
 
 form {
     display: flex;
-    gap: 1rem;        
+    gap: 1rem;
     flex-direction: column;
     align-self: center;
     width: 100%;
@@ -160,7 +160,7 @@ input[type='submit'] {
     width: 100%;
 }
 
-.input-group-item label {    
+.input-group-item label {
     text-align: right;
     width: 40%;
     min-width: 40%;
@@ -173,11 +173,11 @@ input[type='submit'] {
 
 .inputs-container {
     display: flex;
-    gap: 0.5rem;  
+    gap: 0.5rem;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: start;
-    align-items: center;  
+    align-items: center;
     width: 60%;
     min-width: 0;
 }
@@ -189,7 +189,7 @@ input[type='submit'] {
 
 button.inline-button {
     width: auto;
-    padding: 0.5rem 0.2rem;    
+    padding: 0.5rem 0.2rem;
     border: none;
     background: none;
     color: var(--bgColor);
@@ -256,7 +256,7 @@ button.inline-button {
     border-radius: 0.125rem;
     shape-rendering: geometricprecision;
     animation: fadeIn var(--animation-duration) ease-out;
-    animation-fill-mode: both;    
+    animation-fill-mode: both;
 }
 
 /* Grid toolbar styles */
@@ -271,13 +271,13 @@ button.inline-button {
 /* Grid container styles */
 .grid-container {
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
     background-color: var(--bgColor);
     width: fit-content;
     height: fit-content;
     font-size: 0.9rem;
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
-    font-weight: normal;       
+    font-weight: normal;
 }
 
 .grid-wrapper {
@@ -286,7 +286,7 @@ button.inline-button {
     border: 0.1rem dotted var(--borderColor);
     overflow: auto;
     max-width: 100%;
-    align-self: center; 
+    align-self: center;
 }
 
 .grid-container-inner {
@@ -384,8 +384,7 @@ button.inline-button {
     margin: 1rem 0rem;
 }
 
-
-@media (min-width: 500px) {    
+@media (min-width: 500px) {
     .input-group-item label {
         width: 50%;
         min-width: 0;

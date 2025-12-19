@@ -22,14 +22,13 @@ describe('generateContributionGrid', () => {
             ],
             gridGap: '10px',
             minInputLength: 45,
-            numRows: 7            
+            numRows: 7,
         });
 
         expect(contributionsGrid.style.gridTemplateRows).toBe('repeat(7, 10px)'); // 7 rows of 10px each
         expect(contributionsGrid.style.gridTemplateColumns).toBe('repeat(45, 10px)');
         expect(contributionsGrid.children.length).toBe(315); // 7 rows * 45 columns = 315 squares
     });
-    
 
     it('should fill the grid with squares with correct classes', () => {
         const gridContainer = document.createElement('div');
@@ -40,7 +39,7 @@ describe('generateContributionGrid', () => {
             gridContainer,
             contributionsGrid,
             creditsContainer,
-            input: [                   
+            input: [
                 [1, 0, 1, 0, 1],
                 [0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0],
@@ -50,7 +49,7 @@ describe('generateContributionGrid', () => {
                 [0, 0, 0, 0, 0],
             ],
             minInputLength: 5,
-            numRows: 7            
+            numRows: 7,
         });
 
         const squares = contributionsGrid.querySelectorAll('.square');
@@ -83,8 +82,8 @@ describe('generateContributionGrid', () => {
                 [0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0]
-            ],            
+                [0, 0, 0, 0, 0],
+            ],
             paddingX: 10,
             paddingY: 15,
         });
@@ -111,8 +110,8 @@ describe('generateContributionGrid', () => {
                 [0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0]
-            ],  
+                [0, 0, 0, 0, 0],
+            ],
             creditsValue: 'Test Credits',
         });
 

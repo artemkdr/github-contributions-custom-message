@@ -10,11 +10,13 @@ import { charMatrixMap } from './char-matrix-map';
 export const buildMatrixFromString = (input: string, numRows = 7, gap = 2): number[][] => {
     const matrix: number[][] = [];
 
-    if (input?.startsWith("[") && input?.endsWith("]")) {
+    if (input?.startsWith('[') && input?.endsWith(']')) {
         // If the input matrix, parse it and return as a 2D array
         try {
             const parsedMatrix = JSON.parse(input);
-            return parsedMatrix.map((row: (number | string)[]) => row.map((col: number | string) => parseInt(col as string, 10)));
+            return parsedMatrix.map((row: (number | string)[]) =>
+                row.map((col: number | string) => parseInt(col as string, 10))
+            );
         } catch {
             // do nothing, work with the original input
         }

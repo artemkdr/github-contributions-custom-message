@@ -21,7 +21,7 @@ describe('buildMatrixFromPhrase', () => {
         const result = buildMatrixFromString(phrase);
         expect(result).toEqual([
             [1, 0],
-            [0, 1]
+            [0, 1],
         ]);
     });
 

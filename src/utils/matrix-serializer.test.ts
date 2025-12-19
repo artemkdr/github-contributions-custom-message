@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { encodeMatrix, decodeMatrix } from './matrix-serializer';
+import { describe, expect, it } from 'vitest';
+import { decodeMatrix, encodeMatrix } from './matrix-serializer';
 
 // Sample test cases
 describe('matrix-serializer', () => {
@@ -7,7 +7,7 @@ describe('matrix-serializer', () => {
         const matrix = [
             [1, 2, 3],
             [4, 5, 6],
-            [7, 8, 9]
+            [7, 8, 9],
         ];
         const encoded = encodeMatrix(matrix);
         const decoded = decodeMatrix(encoded);
